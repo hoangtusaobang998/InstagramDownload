@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">InstaDownload</string>
+    <string name="empty">Links is empty</string>
+    <string name="loading">Loading</string>
+    <string name="sussce">Download Succes</string>
+    <string name="app_id">ca-app-pub-9820403728969062~4553834162</string>
+    <string name="banner_id">ca-app-pub-9820403728969062/3822017054</string>
+    <string name="inter_id">ca-app-pub-9820403728969062/8425630567</string>
+    <string name="retry">Retry</string>
+    <string name="nulllink">Please enter the link</string>
+    <string name="filett">File already exists</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="set_wallpaper_">Installing Wallpaper</string>
+    <string name="comment">Rate</string>
+    <string name="share">Share</string>
+    <string name="exit">Exit</string>
+    <string name="notlik">Not an Instagram link</string>
+    <string name="rate">Đánh giá</string>
+    <string name="like">Do you love the application?</string>
+
+
+</resources>

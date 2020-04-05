@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/d6</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Pro" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/b2</item>
+    </style>
+
+    <style name="Screen" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:windowBackground">@drawable/splashbackground</item>
+
+    </style>
+
+    <style name="AppThemesss" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/b2</item>
+        <item name="colorPrimaryDark">@color/b2</item>
+        <item name="colorAccent">@color/b2</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>

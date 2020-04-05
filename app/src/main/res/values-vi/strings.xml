@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tải Instagram</string>
+    <string name="empty">Liên kết trống</string>
+    <string name="loading">Đang tải</string>
+    <string name="sussce">Tải xuống thành công</string>
+    <string name="app_id">ca-app-pub-9820403728969062~4553834162</string>
+    <string name="banner_id">ca-app-pub-9820403728969062/3822017054</string>
+    <string name="inter_id">ca-app-pub-9820403728969062/8425630567</string>
+    <string name="retry">Thử lại</string>
+    <string name="nulllink">Vui lòng nhập liên kết</string>
+    <string name="filett">Tập tin đã tồn tại</string>
+    <string name="set_wallpaper">Cài đặt hình nền</string>
+    <string name="set_wallpaper_">Đang cài hình nền</string>
+    <string name="comment">Đánh giá</string>
+    <string name="share">Chia sẻ</string>
+    <string name="exit">Thoát</string>
+    <string name="notlik">Không phải là một liên kết Instagram</string>
+    <string name="rate">Đánh giá</string>
+</resources>

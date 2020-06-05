@@ -33,7 +33,7 @@ public class AdapterIMG extends RecyclerView.Adapter<AdapterIMG.ViewIMG> {
 
     public void delete(int index) {
         notifyItemRemoved(index);
-        notifyItemRangeChanged(index,fileInstagramList.size());
+        notifyItemRangeChanged(index, fileInstagramList.size());
     }
 
     public AdapterIMG(List<FileInstagram> fileInstagramList, Context context) {
@@ -50,23 +50,23 @@ public class AdapterIMG extends RecyclerView.Adapter<AdapterIMG.ViewIMG> {
     @Override
     public void onBindViewHolder(@NonNull ViewIMG holder, int position) {
         Log.e("P", position + "");
-            try {
-                Glide.with(context)
-                        .asBitmap()
-                        .load(Uri.fromFile(new File(fileInstagramList.get(position).getPath()))).listener(new RequestListener<Bitmap>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        return false;
-                    }
+        try {
+            Glide.with(context)
+                    .asBitmap()
+                    .load(Uri.fromFile(new File(fileInstagramList.get(position).getPath()))).listener(new RequestListener<Bitmap>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                    return false;
+                }
 
-                    @Override
-                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        return false;
-                    }
-                }).into(holder.img);
-            } catch (Exception e) {
-                Log.e("NullPoin", e.toString());
-            }
+                @Override
+                public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                    return false;
+                }
+            }).into(holder.img);
+        } catch (Exception e) {
+            Log.e("NullPoin", e.toString());
+        }
     }
 
     @Override

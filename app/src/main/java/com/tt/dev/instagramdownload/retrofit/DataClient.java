@@ -1,7 +1,7 @@
 package com.tt.dev.instagramdownload.retrofit;
 
 
-import com.tt.dev.instagramdownload.view.ListIMG;
+import com.tt.dev.instagramdownload.androidnetworking.ListIMG;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

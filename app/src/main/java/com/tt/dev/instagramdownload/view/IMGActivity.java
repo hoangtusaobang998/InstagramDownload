@@ -166,7 +166,6 @@ public class IMGActivity extends AppCompatActivity {
     @OnClick(R.id.view_b)
     public void share() {
         Init.sendMessenger(new File(list.get(index).getPath()), IMGActivity.this);
-
     }
 
     @BindView(R.id.img)

@@ -17,6 +17,8 @@
     <string name="notlik">Not an Instagram link</string>
     <string name="rate">Đánh giá</string>
     <string name="like">Do you love the application?</string>
+    <string name="url_in"> \u2713 Paste Instagram Link here </string>
+    <string name="download">Download</string>
 
 
 </resources>

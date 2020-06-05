@@ -1,4 +1,4 @@
-package com.tt.dev.instagramdownload.view;
+package com.tt.dev.instagramdownload.androidnetworking;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

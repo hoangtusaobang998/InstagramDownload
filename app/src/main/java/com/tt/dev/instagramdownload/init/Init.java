@@ -142,11 +142,6 @@ public class Init {
 
     private static String url_test = "https://www.instagram.com/p/B8TfPMuBUpd/?igshid=v9fdhptex4g7";
 
-    public static String getIDUrl(String url) {
-        String[] mang = url.split("/");
-        return mang[4];
-    }
-
     public static boolean isFile(String s) {
         String file_path = "";
         file_path = getFilename() + "/" + s;

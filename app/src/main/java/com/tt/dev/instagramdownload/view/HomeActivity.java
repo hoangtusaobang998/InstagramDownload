@@ -27,9 +27,6 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.DownloadProgressListener;
-import com.azoft.carousellayoutmanager.CarouselLayoutManager;
-import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -37,19 +34,15 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.tt.dev.instagramdownload.BuildConfig;
 import com.tt.dev.instagramdownload.R;
 import com.tt.dev.instagramdownload.adapter.MyAdapter;
+import com.tt.dev.instagramdownload.androidnetworking.NetWorking;
 import com.tt.dev.instagramdownload.clip.Clip;
-import com.tt.dev.instagramdownload.dialog.Dialog;
 import com.tt.dev.instagramdownload.dialog.SweetAlertDialog;
 import com.tt.dev.instagramdownload.init.FileUtil;
 import com.tt.dev.instagramdownload.init.Init;
 import com.tt.dev.instagramdownload.listen.GetListFile;
-import com.tt.dev.instagramdownload.listen.GetVideoInstagram;
 import com.tt.dev.instagramdownload.listen.ValidateUrl;
 import com.tt.dev.instagramdownload.model.FileInstagram;
 import com.tt.dev.instagramdownload.model.Url;
-import com.tt.dev.instagramdownload.retrofit.APIClient;
-import com.tt.dev.instagramdownload.task.InstagramDownloader;
-
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,15 +53,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.tt.dev.instagramdownload.init.Init.P;
 import static com.tt.dev.instagramdownload.init.Init.P_CODE;
 import static com.tt.dev.instagramdownload.init.Init.getDateFile;
 import static com.tt.dev.instagramdownload.init.Init.getFileByType;
-import static com.tt.dev.instagramdownload.init.Init.getIDUrl;
 import static com.tt.dev.instagramdownload.init.Init.hasPermissions;
 import static com.tt.dev.instagramdownload.init.Init.openGooglePlay;
 import static com.tt.dev.instagramdownload.init.Init.validateIN;
@@ -84,6 +73,25 @@ public class HomeActivity extends AppCompatActivity implements ValidateUrl, GetL
     private InterstitialAd mInterstitialAd;
     private AdView mAdView;
     private PopupMenu popupMenu;
+
+
+    private NetWorking netWorking = NetWorking.getInstance().setDataIMG(new NetWorking.DataIMG() {
+        @Override
+        public void onResponseTypeList(String getUsername, String getFullName, String imgusername, List<String> edge____list) {
+
+        }
+
+        @Override
+        public void onResponseTypeNoList(String getDisplayUrl, String getUsername, String getFullName, String imgusername) {
+
+        }
+
+        @Override
+        public void onError(String anError) {
+
+        }
+    });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,7 +266,7 @@ public class HomeActivity extends AppCompatActivity implements ValidateUrl, GetL
     public void openTiktok() {
         try {
             Intent launchIntent = getPackageManager().getLaunchIntentForPackage(TIKTOK_PACK);
-            startActivity(launchIntent);
+            startActivity(launchIntclickItement);
         } catch (Exception e) {
             openGooglePlay(HomeActivity.this, TIKTOK_PACK);
         }
@@ -287,57 +295,8 @@ public class HomeActivity extends AppCompatActivity implements ValidateUrl, GetL
         } catch (Exception e) {
             e.printStackTrace();
         }
-        onLoading = Dialog.PROGRESS_TYPE(HomeActivity.this, getString(R.string.loading));
-        onSucce = Dialog.SUCCESS_TYPE(HomeActivity.this, getString(R.string.sussce));
-        showDialogLoading();
-        Log.e("A", getIDUrl(url));
-        APIClient.getData().getDataALL(getIDUrl(url)).enqueue(new Callback<ListIMG>() {
-            @Override
-            public void onResponse(Call<ListIMG> call, Response<ListIMG> response) {
-                if (!response.isSuccessful()) {
-                    Toasty.error(context, getString(R.string.retry), Toasty.LENGTH_SHORT).show();
-                    cancelDialogLoading();
-                    return;
-                }
-                try {
-                    if (response.body().getGraphql().getShortcodeMedia().getEdgeSidecarToChildren().getEdges() == null) {
-                        onRequesUrl(url);
-                        return;
-                    }
-                } catch (Exception e) {
-                    onRequesUrl(url);
-                    return;
-                }
+        netWorking.requestAPI(url);
 
-                int size = response.body().getGraphql().getShortcodeMedia().getEdgeSidecarToChildren().getEdges().size();
-                for (int i = 0; i < size; i++) {
-                    String urlpath = response.body().getGraphql().getShortcodeMedia().getEdgeSidecarToChildren().getEdges().get(i).getNode().getDisplayUrl();
-                    String filename = "instagram" + response.body().getGraphql().getShortcodeMedia().getEdgeSidecarToChildren().getEdges().get(i).getNode().getId() + ".jpg";
-                    downloadStartList(urlpath, filename, i, size);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ListIMG> call, Throwable t) {
-                onRequesUrl(url);
-                Log.e("ERR", t.toString());
-            }
-        });
-    }
-
-    void onRequesUrl(String url) {
-        new InstagramDownloader().setInstagram(new GetVideoInstagram() {
-            @Override
-            public void Links(Url url) {
-                startDownload(url);
-            }
-
-            @Override
-            public void Err() {
-
-            }
-        }, url);
     }
 
     @Override
